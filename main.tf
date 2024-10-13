@@ -24,14 +24,11 @@ resource "aws_instance" "target_grp_1" {
 
   associate_public_ip_address = true
 
-  availability_zone = "us-east-1a"
   key_name          = "terraformkey"
 
   tags = {
     Name = "main"
   }
-
-  # depends_on = [aws_internet_gateway.terraform-eks]
 
   user_data = file("bootstrap1.sh")
 }
@@ -54,27 +51,23 @@ data "aws_ami" "amazon" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
 }
 
 resource "aws_instance" "target_grp_2" {
   count         = 2
   ami           = data.aws_ami.amazon.id
   instance_type = "t2.micro"
-  subnet_id     = module.vpc.public_subnets[0]
+  subnet_id     = module.vpc.public_subnets[1]
 
   vpc_security_group_ids = [aws_security_group.instances.id]
 
   associate_public_ip_address = true
 
-  availability_zone = "us-east-1a"
   key_name          = "terraformkey"
 
   tags = {
     Name = "amazon"
   }
-
-  # depends_on = [aws_internet_gateway.terraform-eks]
 
   user_data = file("bootstrap.sh")
 }

@@ -44,6 +44,8 @@ resource "aws_lb_listener_rule" "main_1" {
       values = ["/tg1"]
     }
   }
+
+  depends_on = [ aws_lb_listener.main ]
 }
 
 # Forward action
@@ -62,6 +64,8 @@ resource "aws_lb_listener_rule" "main_2" {
       values = ["/tg2"]
     }
   }
+
+  depends_on = [ aws_lb_listener.main ]
 }
 
 # Fixed-response action
