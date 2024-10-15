@@ -47,25 +47,25 @@ resource "aws_lb_listener_rule" "main_1" {
   depends_on = [aws_lb_listener.main]
 }
 
-# # Forward action
+# Forward action
 
-# resource "aws_lb_listener_rule" "main_2" {
-#   listener_arn = aws_lb_listener.main.arn
-#   priority     = 99
+resource "aws_lb_listener_rule" "main_2" {
+  listener_arn = aws_lb_listener.main.arn
+  priority     = 99
 
-#   action {
-#     type             = "forward"
-#     target_group_arn = aws_lb_target_group.target_grp_2.arn
-#   }
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_grp_2.arn
+  }
 
-#   condition {
-#     path_pattern {
-#       values = ["/tg2"]
-#     }
-#   }
+  condition {
+    path_pattern {
+      values = ["/path2.html"]
+    }
+  }
 
-#   depends_on = [aws_lb_listener.main]
-# }
+  depends_on = [aws_lb_listener.main]
+}
 
 # Fixed-response action
 
