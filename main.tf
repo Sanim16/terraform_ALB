@@ -24,7 +24,7 @@ resource "aws_instance" "target_grp_1" {
 
   associate_public_ip_address = true
 
-  key_name          = "terraformkey"
+  key_name = "terraformkey"
 
   tags = {
     Name = "main"
@@ -53,20 +53,40 @@ data "aws_ami" "amazon" {
   }
 }
 
-resource "aws_instance" "target_grp_2" {
+# resource "aws_instance" "target_grp_2" {
+#   count         = 2
+#   ami           = data.aws_ami.amazon.id
+#   instance_type = "t2.micro"
+#   subnet_id     = module.vpc.public_subnets[1]
+
+#   vpc_security_group_ids = [aws_security_group.instances.id]
+
+#   associate_public_ip_address = true
+
+#   key_name = "terraformkey"
+
+#   tags = {
+#     Name = "amazon"
+#   }
+
+#   user_data = file("bootstrap2.sh")
+# }
+
+resource "aws_instance" "target_grp_default" {
   count         = 2
   ami           = data.aws_ami.amazon.id
   instance_type = "t2.micro"
-  subnet_id     = module.vpc.public_subnets[1]
+  subnet_id     = module.vpc.public_subnets[2]
 
   vpc_security_group_ids = [aws_security_group.instances.id]
 
   associate_public_ip_address = true
 
-  key_name          = "terraformkey"
+  key_name = "terraformkey"
 
   tags = {
-    Name = "amazon"
+    Name  = "amazon"
+    Group = "default"
   }
 
   user_data = file("bootstrap.sh")

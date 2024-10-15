@@ -4,12 +4,11 @@ resource "aws_lb" "main" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
   subnets            = module.vpc.public_subnets
-  # subnets            = [for subnet in aws_subnet.public : subnet.id]
-  ip_address_type = "ipv4"
+  ip_address_type    = "ipv4"
 
   # access_logs {
   #   bucket  = aws_s3_bucket.lb_logs.id
-  #   prefix  = "test-lb"
+  #   prefix  = "main-lb-tf"
   #   enabled = true
   # }
 
@@ -26,7 +25,7 @@ resource "aws_lb_listener" "main" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.target_grp_1.arn
+    target_group_arn = aws_lb_target_group.target_grp_default.arn
   }
 }
 
@@ -41,32 +40,32 @@ resource "aws_lb_listener_rule" "main_1" {
 
   condition {
     path_pattern {
-      values = ["/tg1"]
+      values = ["/index.html"]
     }
   }
 
-  depends_on = [ aws_lb_listener.main ]
+  depends_on = [aws_lb_listener.main]
 }
 
-# Forward action
+# # Forward action
 
-resource "aws_lb_listener_rule" "main_2" {
-  listener_arn = aws_lb_listener.main.arn
-  priority     = 99
+# resource "aws_lb_listener_rule" "main_2" {
+#   listener_arn = aws_lb_listener.main.arn
+#   priority     = 99
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.target_grp_2.arn
-  }
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.target_grp_2.arn
+#   }
 
-  condition {
-    path_pattern {
-      values = ["/tg2"]
-    }
-  }
+#   condition {
+#     path_pattern {
+#       values = ["/tg2"]
+#     }
+#   }
 
-  depends_on = [ aws_lb_listener.main ]
-}
+#   depends_on = [aws_lb_listener.main]
+# }
 
 # Fixed-response action
 
