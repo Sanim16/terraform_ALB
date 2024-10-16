@@ -3,8 +3,9 @@ sudo apt-get update
 sudo apt-get install -y apache2
 sudo systemctl start apache2
 sudo systemctl enable apache2
+sudo mkdir /var/www/html/path1
 echo " " > /var/www/html/index.html #This overwrites the default index.html file
-cat <<EOT >> /var/www/html/path1.html
+cat <<EOT >> /var/www/html/path1/index.html
 <!DOCTYPE html>
 <html>
 <title>Sample site deployed with Terraform</title>

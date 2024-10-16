@@ -40,7 +40,7 @@ resource "aws_lb_listener_rule" "main_1" {
 
   condition {
     path_pattern {
-      values = ["/path1.html"]
+      values = ["/path1/*"]
     }
   }
 
@@ -60,7 +60,7 @@ resource "aws_lb_listener_rule" "main_2" {
 
   condition {
     path_pattern {
-      values = ["/path2.html"]
+      values = ["/path2/*"]
     }
   }
 

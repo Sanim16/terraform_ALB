@@ -5,8 +5,9 @@ yum update -y
 yum install -y httpd
 systemctl start httpd
 systemctl enable httpd
+sudo mkdir /var/www/html/path2
 echo " " > /var/www/html/index.html #This overwrites the default index.html file
-cat <<EOT >> /var/www/html/path2.html
+cat <<EOT >> /var/www/html/path2/index.html
 <!DOCTYPE html>
 <html>
 <title>Sample site deployed with Terraform</title>
