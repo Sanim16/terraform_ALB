@@ -40,7 +40,7 @@ resource "aws_lb_listener_rule" "main_1" {
 
   condition {
     path_pattern {
-      values = ["/index.html"]
+      values = ["/path1.html"]
     }
   }
 
