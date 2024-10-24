@@ -18,3 +18,8 @@ variable "subnet_cidr" {
 variable "region" {
   default = "us-east-1"
 }
+
+variable "hosted_zone_id" {
+  type        = string
+  description = "The ID of the hosted zone to contain this record"
+}
