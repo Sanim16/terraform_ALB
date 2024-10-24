@@ -17,6 +17,11 @@ cat <<EOT >> /var/www/html/path2/index.html
 <p>
 
 This is the target group 2.
+<br>
+<a href="./../index.html"> Link To Default Target group</a>
+<br>
+<a href="./../path1/index.html"> Link To Target group 1</a>
+<br>
 
 This site was deployed with Terraform to an EC2 instance fronted by an Application Load balancer.
 It's a basic page deployed by the userdata script, You could put an instruction to get the site from S3 for a full site.
