@@ -11,6 +11,7 @@ on:
 
 jobs:
   scan:
+    
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
@@ -42,6 +43,7 @@ jobs:
           sarif_file: results.sarif
 
   Plan:
+    needs: scan
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
