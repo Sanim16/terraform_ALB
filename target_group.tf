@@ -5,8 +5,8 @@ resource "aws_lb_target_group" "target_grp_1" {
   vpc_id   = module.vpc.vpc_id
 
   stickiness {
-    enabled = true
-    type = "lb_cookie"
+    enabled         = true
+    type            = "lb_cookie"
     cookie_duration = 86400 #1 day
   }
 }
