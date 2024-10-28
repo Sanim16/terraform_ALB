@@ -5,12 +5,13 @@ resource "aws_lb" "main" {
   security_groups    = [aws_security_group.alb.id]
   subnets            = module.vpc.public_subnets
   ip_address_type    = "ipv4"
+  drop_invalid_header_fields = true
 
-  # access_logs {
-  #   bucket  = aws_s3_bucket.lb_logs.id
-  #   prefix  = "main-lb-tf"
-  #   enabled = true
-  # }
+  access_logs {
+    bucket  = aws_s3_bucket.s3_lb_logs_bucket.id
+    prefix  = "main-lb-tf"
+    enabled = true
+  }
 
   tags = {
     Environment = "dev"

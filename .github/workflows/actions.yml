@@ -11,7 +11,7 @@ on:
 
 jobs:
   scan:
-    
+
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
@@ -26,6 +26,8 @@ jobs:
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
+          # quiet: true # optional: display only failed checks
+          # soft_fail: true # optional: do not return an error code if there are failed checks
           # This will add both a CLI output to the console and create a results.sarif file
           output_format: cli,sarif
           output_file_path: console,results.sarif
