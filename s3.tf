@@ -19,11 +19,17 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_c
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "erraform_bucket_public_access" {
+  bucket = aws_s3_bucket.s3_lb_logs_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+}
+
 resource "aws_s3_bucket_policy" "allow_access_from_lb" {
   bucket = aws_s3_bucket.s3_lb_logs_bucket.id
   policy = data.aws_iam_policy_document.allow_access_from_lb.json
 }
-
 
 # Use the link below to get elb account ID for your region
 # https://docs.aws.amazon.com/elasticloadbalancing/latest/application/enable-access-logging.html#attach-bucket-policy
