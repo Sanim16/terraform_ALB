@@ -77,6 +77,8 @@ jobs:
         id: plan
         env: # Or as an environment variable
           TF_VAR_hosted_zone_id: ${{ secrets.TF_VAR_hosted_zone_id }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: terraform plan -no-color
         # continue-on-error: true
 
