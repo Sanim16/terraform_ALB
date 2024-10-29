@@ -23,9 +23,9 @@ resource "aws_launch_template" "target_grp_default" {
   key_name      = "terraformkey"
 
   network_interfaces {
-    associate_public_ip_address = true
-    subnet_id                   = module.vpc.public_subnets[2]
-    security_groups             = [aws_security_group.instances.id]
+    # associate_public_ip_address = true
+    subnet_id       = module.vpc.public_subnets[2]
+    security_groups = [aws_security_group.instances.id]
   }
 
   tag_specifications {
@@ -70,9 +70,9 @@ resource "aws_launch_template" "target_grp_1" {
   key_name      = "terraformkey"
 
   network_interfaces {
-    associate_public_ip_address = true
-    subnet_id                   = module.vpc.public_subnets[0]
-    security_groups             = [aws_security_group.instances.id]
+    # associate_public_ip_address = true
+    subnet_id       = module.vpc.public_subnets[0]
+    security_groups = [aws_security_group.instances.id]
   }
 
   tag_specifications {
@@ -117,9 +117,9 @@ resource "aws_launch_template" "target_grp_2" {
   key_name      = "terraformkey"
 
   network_interfaces {
-    associate_public_ip_address = true
-    subnet_id                   = module.vpc.public_subnets[1]
-    security_groups             = [aws_security_group.instances.id]
+    # associate_public_ip_address = true
+    subnet_id       = module.vpc.public_subnets[1]
+    security_groups = [aws_security_group.instances.id]
   }
 
   tag_specifications {
