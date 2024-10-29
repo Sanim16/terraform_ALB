@@ -4,7 +4,7 @@ resource "aws_security_group" "alb" {
   vpc_id      = module.vpc.vpc_id
 
   egress {
-    description       = "ALB egress rule"
+    description = "ALB egress rule"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"

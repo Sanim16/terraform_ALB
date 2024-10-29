@@ -1,6 +1,6 @@
 # Create VPC using a module
 module "vpc" {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git?ref=c182453f881ae77afd14c826dc8e23498b957907"  # commit hash of version 5.7.1
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git?ref=c182453f881ae77afd14c826dc8e23498b957907" # commit hash of version 5.7.1
 
   name = var.vpc_name
   cidr = var.vpc_cidr
@@ -28,7 +28,7 @@ resource "aws_security_group" "terraform-dev-vpc" {
   vpc_id      = module.vpc.vpc_id
 
   egress {
-    description       = "VPC egress rule"
+    description = "VPC egress rule"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
