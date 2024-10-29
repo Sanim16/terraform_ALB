@@ -7,6 +7,12 @@ resource "aws_autoscaling_group" "target_grp_default" {
     id      = aws_launch_template.target_grp_default.id
     version = "$Latest"
   }
+
+  tag {
+    key                 = "group_name"
+    value               = "target_grp_default"
+    propagate_at_launch = true
+  }
 }
 
 resource "aws_launch_template" "target_grp_default" {
@@ -48,6 +54,12 @@ resource "aws_autoscaling_group" "target_grp_1" {
     id      = aws_launch_template.target_grp_1.id
     version = "$Latest"
   }
+
+  tag {
+    key                 = "group_name"
+    value               = "target_grp_1"
+    propagate_at_launch = true
+  }
 }
 
 resource "aws_launch_template" "target_grp_1" {
@@ -88,6 +100,12 @@ resource "aws_autoscaling_group" "target_grp_2" {
   launch_template {
     id      = aws_launch_template.target_grp_2.id
     version = "$Latest"
+  }
+
+  tag {
+    key                 = "group_name"
+    value               = "target_grp_2"
+    propagate_at_launch = true
   }
 }
 

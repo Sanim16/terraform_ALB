@@ -1,10 +1,10 @@
 resource "aws_lb" "main" {
-  name               = "main-lb-tf"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.alb.id]
-  subnets            = module.vpc.public_subnets
-  ip_address_type    = "ipv4"
+  name                       = "main-lb-tf"
+  internal                   = false
+  load_balancer_type         = "application"
+  security_groups            = [aws_security_group.alb.id]
+  subnets                    = module.vpc.public_subnets
+  ip_address_type            = "ipv4"
   drop_invalid_header_fields = true
   enable_deletion_protection = true
 
