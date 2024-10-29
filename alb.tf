@@ -6,6 +6,7 @@ resource "aws_lb" "main" {
   subnets            = module.vpc.public_subnets
   ip_address_type    = "ipv4"
   drop_invalid_header_fields = true
+  enable_deletion_protection = true
 
   access_logs {
     bucket  = aws_s3_bucket.s3_lb_logs_bucket.id
