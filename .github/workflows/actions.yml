@@ -21,7 +21,7 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so follow-up steps can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
