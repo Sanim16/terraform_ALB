@@ -5,12 +5,12 @@ resource "aws_lb_target_group" "target_grp_1" {
   vpc_id   = module.vpc.vpc_id
 
   health_check {
-    enabled = true
-    protocol = "HTTP"
-    healthy_threshold = 3
+    enabled             = true
+    protocol            = "HTTP"
+    healthy_threshold   = 3
     unhealthy_threshold = 3
-    path = "/"
-    matcher = "200"
+    path                = "/"
+    matcher             = "200"
   }
 
   stickiness {
@@ -27,12 +27,12 @@ resource "aws_lb_target_group" "target_grp_2" {
   vpc_id   = module.vpc.vpc_id
 
   health_check {
-    enabled = true
-    protocol = "HTTP"
-    healthy_threshold = 3
+    enabled             = true
+    protocol            = "HTTP"
+    healthy_threshold   = 3
     unhealthy_threshold = 3
-    path = "/"
-    matcher = "200"
+    path                = "/"
+    matcher             = "200"
   }
 }
 
@@ -43,11 +43,11 @@ resource "aws_lb_target_group" "target_grp_default" {
   vpc_id   = module.vpc.vpc_id
 
   health_check {
-    enabled = true
-    protocol = "HTTP"
-    healthy_threshold = 3
+    enabled             = true
+    protocol            = "HTTP"
+    healthy_threshold   = 3
     unhealthy_threshold = 3
-    path = "/"
-    matcher = "200"
+    path                = "/"
+    matcher             = "200"
   }
 }
