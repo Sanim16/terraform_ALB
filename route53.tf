@@ -1,9 +1,10 @@
-# resource "aws_route53_zone" "primary" {
-#   name = "example.com"
-# }
+data "aws_route53_zone" "mscodesdigitalsolution_com" {
+  name         = "mscodesdigitalsolutions.com"
+  private_zone = false
+}
 
-resource "aws_route53_record" "www" {
-  zone_id = var.hosted_zone_id # uses an existing zone in my aws account
+resource "aws_route53_record" "root" {
+  zone_id = data.aws_route53_zone.mscodesdigitalsolution_com.zone_id
   name    = "mscodesdigitalsolutions.com"
   type    = "A"
 
@@ -12,4 +13,57 @@ resource "aws_route53_record" "www" {
     zone_id                = aws_lb.main.zone_id
     evaluate_target_health = true
   }
+}
+
+resource "aws_route53_record" "www1" {
+  zone_id = var.hosted_zone_id
+  name    = "*.mscodesdigitalsolutions.com"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.main.dns_name
+    zone_id                = aws_lb.main.zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_acm_certificate" "cert" {
+  domain_name               = "mscodesdigitalsolutions.com"
+  subject_alternative_names = ["*.mscodesdigitalsolutions.com"]
+  validation_method         = "DNS"
+
+  tags = {
+    Environment = "dev"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_route53_record" "example" {
+  for_each = {
+    for dvo in aws_acm_certificate.cert.domain_validation_options : dvo.domain_name => {
+      name    = dvo.resource_record_name
+      record  = dvo.resource_record_value
+      type    = dvo.resource_record_type
+      zone_id = data.aws_route53_zone.mscodesdigitalsolution_com.zone_id
+    }
+  }
+
+  allow_overwrite = true
+  name            = each.value.name
+  type            = each.value.type
+  zone_id         = each.value.zone_id
+
+  alias {
+    name                   = aws_lb.main.dns_name
+    zone_id                = aws_lb.main.zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_acm_certificate_validation" "cert" {
+  certificate_arn         = aws_acm_certificate.cert.arn
+  validation_record_fqdns = [for record in aws_route53_record.example : record.fqdn]
 }

@@ -10,6 +10,29 @@ resource "aws_s3_bucket_versioning" "terraform_bucket_versioning" {
   }
 }
 
+resource "aws_s3_bucket_lifecycle_configuration" "terraform_bucket_lifecycle" {
+  bucket = aws_s3_bucket.s3_lb_logs_bucket.id
+
+  rule {
+    id = "rule-1"
+
+    filter {
+      object_size_greater_than = 200 # Object size values are in bytes
+    }
+
+    transition {
+      days          = 10
+      storage_class = "GLACIER_IR"
+    }
+
+    expiration {
+      days = 30
+    }
+
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_crypto_conf" {
   bucket = aws_s3_bucket.s3_lb_logs_bucket.bucket
   rule {

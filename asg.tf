@@ -3,6 +3,9 @@ resource "aws_autoscaling_group" "target_grp_default" {
   max_size         = 5
   min_size         = 1
 
+  health_check_grace_period = 300
+  health_check_type         = "ELB"
+
   launch_template {
     id      = aws_launch_template.target_grp_default.id
     version = "$Latest"
@@ -28,6 +31,12 @@ resource "aws_launch_template" "target_grp_default" {
     security_groups = [aws_security_group.instances.id]
   }
 
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
+  }
+
   tag_specifications {
     resource_type = "instance"
 
@@ -49,6 +58,9 @@ resource "aws_autoscaling_group" "target_grp_1" {
   desired_capacity = 2
   max_size         = 5
   min_size         = 1
+
+  health_check_grace_period = 300
+  health_check_type         = "ELB"
 
   launch_template {
     id      = aws_launch_template.target_grp_1.id
@@ -75,6 +87,12 @@ resource "aws_launch_template" "target_grp_1" {
     security_groups = [aws_security_group.instances.id]
   }
 
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
+  }
+
   tag_specifications {
     resource_type = "instance"
 
@@ -96,6 +114,9 @@ resource "aws_autoscaling_group" "target_grp_2" {
   desired_capacity = 2
   max_size         = 5
   min_size         = 1
+
+  health_check_grace_period = 300
+  health_check_type         = "ELB"
 
   launch_template {
     id      = aws_launch_template.target_grp_2.id
@@ -120,6 +141,12 @@ resource "aws_launch_template" "target_grp_2" {
     # associate_public_ip_address = true
     subnet_id       = module.vpc.public_subnets[1]
     security_groups = [aws_security_group.instances.id]
+  }
+
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
   }
 
   tag_specifications {
