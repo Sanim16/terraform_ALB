@@ -17,7 +17,7 @@ resource "aws_route53_record" "root" {
 
 resource "aws_route53_record" "www" {
   zone_id = var.hosted_zone_id
-  name    = "*.mscodesdigitalsolutions.com"
+  name    = "www.mscodesdigitalsolutions.com"
   type    = "A"
 
   alias {
