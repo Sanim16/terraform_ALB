@@ -17,7 +17,7 @@ resource "aws_route53_record" "root" {
 
 resource "aws_route53_record" "www" {
   zone_id = var.hosted_zone_id
-  name    = "www.mscodesdigitalsolutions.com"
+  name    = "*.mscodesdigitalsolutions.com"
   type    = "A"
 
   alias {
@@ -29,7 +29,7 @@ resource "aws_route53_record" "www" {
 
 resource "aws_acm_certificate" "cert" {
   domain_name               = "mscodesdigitalsolutions.com"
-  subject_alternative_names = ["www.mscodesdigitalsolutions.com"]
+  subject_alternative_names = ["*.mscodesdigitalsolutions.com"]
   validation_method         = "DNS"
 
   tags = {
