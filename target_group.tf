@@ -4,6 +4,15 @@ resource "aws_lb_target_group" "target_grp_1" {
   protocol = "HTTP"
   vpc_id   = module.vpc.vpc_id
 
+  health_check {
+    enabled = true
+    protocol = "HTTP"
+    healthy_threshold = 3
+    unhealthy_threshold = 3
+    path = "/"
+    matcher = "200"
+  }
+
   stickiness {
     enabled         = true
     type            = "lb_cookie"
@@ -11,52 +20,34 @@ resource "aws_lb_target_group" "target_grp_1" {
   }
 }
 
-# resource "aws_lb_target_group_attachment" "target_grp_1" {
-#   # covert a list of instance objects to a map with instance ID as the key, and an instance
-#   # object as the value.
-#   for_each = {
-#     for k, v in aws_instance.target_grp_1 :
-#     k => v
-#   }
-#   target_group_arn = aws_lb_target_group.target_grp_1.arn
-#   target_id        = each.value.id
-#   port             = 80
-# }
-
 resource "aws_lb_target_group" "target_grp_2" {
   name     = "tf-lb-tg-2"
   port     = 80
   protocol = "HTTP"
   vpc_id   = module.vpc.vpc_id
-}
 
-# resource "aws_lb_target_group_attachment" "target_grp_2" {
-#   # covert a list of instance objects to a map with instance ID as the key, and an instance
-#   # object as the value.
-#   for_each = {
-#     for k, v in aws_instance.target_grp_2 :
-#     k => v
-#   }
-#   target_group_arn = aws_lb_target_group.target_grp_2.arn
-#   target_id        = each.value.id
-#   port             = 80
-# }
+  health_check {
+    enabled = true
+    protocol = "HTTP"
+    healthy_threshold = 3
+    unhealthy_threshold = 3
+    path = "/"
+    matcher = "200"
+  }
+}
 
 resource "aws_lb_target_group" "target_grp_default" {
   name     = "tf-lb-tg-default"
   port     = 80
   protocol = "HTTP"
   vpc_id   = module.vpc.vpc_id
-}
 
-# resource "aws_lb_target_group_attachment" "target_grp_default" {
-#   # covert a list of instance objects to a map with instance ID as the key, and an instance
-#   # object as the value.
-#   for_each = {
-#     for k, v in aws_instance.target_grp_default :
-#     k => v
-#   }
-#   target_group_arn = aws_lb_target_group.target_grp_default.arn
-#   target_id        = each.value.id
-#   port             = 80
-# }
+  health_check {
+    enabled = true
+    protocol = "HTTP"
+    healthy_threshold = 3
+    unhealthy_threshold = 3
+    path = "/"
+    matcher = "200"
+  }
+}

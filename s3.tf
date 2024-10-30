@@ -31,6 +31,16 @@ resource "aws_s3_bucket_lifecycle_configuration" "terraform_bucket_lifecycle" {
 
     status = "Enabled"
   }
+
+  rule {
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
+    }
+
+    filter {}
+    id     = "incomplete"
+    status = "Enabled"
+  }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_crypto_conf" {

@@ -60,7 +60,7 @@ resource "aws_vpc_security_group_ingress_rule" "instances-https" {
   security_group_id = aws_security_group.instances.id
   description       = "Instances HTTPS Ingress rule"
 
-  cidr_ipv4   = "0.0.0.0/0"
+  referenced_security_group_id = aws_security_group.alb.id
   from_port   = 443
   ip_protocol = "tcp"
   to_port     = 443
