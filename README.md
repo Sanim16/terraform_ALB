@@ -1,4 +1,4 @@
-> Adding a Github actions workflow to automate changes.
+> Adding a Github actions workflow to automate changes. Also implement branch protection for the main branch.
 
 # Terraform AWS ALB Path Based Routing
 
