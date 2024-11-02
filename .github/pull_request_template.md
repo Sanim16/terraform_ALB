@@ -6,11 +6,6 @@
 
 - adds this new feature
 
-### Related Issues
-<!-- add here the GitHub issue that this PR resolves if applicable -->
-
-Fixes #123456789
-
 ## Motivation and Context
 <!--- Why is this change required? What problem does it solve? -->
 <!--- If it fixes an open issue, please link to the issue here. -->
