@@ -1,8 +1,8 @@
-> Adding a Github actions workflow to automate changes. Also implement branch protection for the main branch.
+> Adding a Github actions workflow to automate changes.
 
 # Terraform AWS ALB Path Based Routing
 
->This is a Terraform project that deploys an ALB which uses path based routing, along with a VPC, ASG(for scaling instances) and Route 53 for managing domain name.
+>This is a Terraform project that deploys an ALB which uses path based routing, along with a VPC, ASG(for scaling instances) and Route 53 for managing domain name. Branch protection is also enabled on the main branch.
 
 ## Resources:
 - Terraform
