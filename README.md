@@ -46,3 +46,4 @@ Remember to delete all AWS components afterwards to avoid unforseen bills.
 ```terraform
 terraform destroy -auto-approve
 ```
+
