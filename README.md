@@ -2,6 +2,8 @@
 
 # Terraform AWS ALB Path Based Routing
 
+[![Github Actions](https://github.com/Sanim16/terraform_ALB/actions/workflows/actions.yml/badge.svg)](https://github.com/Sanim16/terraform_ALB/actions/workflows/actions.yml)
+
 >This is a Terraform project that deploys an ALB which uses path based routing, along with a VPC, ASG(for scaling instances) and Route 53 for managing domain name. Branch protection is also enabled on the main branch.
 
 ## Resources:
