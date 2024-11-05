@@ -36,15 +36,15 @@ resource "aws_vpc_security_group_ingress_rule" "alb-https" {
   to_port     = 443
 }
 
-resource "aws_vpc_security_group_ingress_rule" "instances-ssh" {
-  security_group_id = aws_security_group.instances.id
-  description       = "Instances SSH ingress rule"
+# resource "aws_vpc_security_group_ingress_rule" "instances-ssh" {
+#   security_group_id = aws_security_group.instances.id
+#   description       = "Instances SSH ingress rule"
 
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 22
-  ip_protocol = "tcp"
-  to_port     = 22
-}
+#   cidr_ipv4   = "0.0.0.0/0" # insert your ip address and uncomment to allow ssh from IP address
+#   from_port   = 22
+#   ip_protocol = "tcp"
+#   to_port     = 22
+# }
 
 resource "aws_vpc_security_group_ingress_rule" "instances-http" {
   security_group_id = aws_security_group.instances.id
