@@ -46,7 +46,7 @@ resource "aws_launch_template" "target_grp_default" {
     }
   }
 
-  user_data = filebase64("bootstrap.sh")
+  user_data = filebase64("scripts/bootstrap.sh")
 }
 
 resource "aws_autoscaling_attachment" "target_grp_default" {
@@ -102,7 +102,7 @@ resource "aws_launch_template" "target_grp_1" {
     }
   }
 
-  user_data = filebase64("bootstrap1.sh")
+  user_data = filebase64("scripts/bootstrap1.sh")
 }
 
 resource "aws_autoscaling_attachment" "target_grp_1" {
@@ -158,7 +158,7 @@ resource "aws_launch_template" "target_grp_2" {
     }
   }
 
-  user_data = filebase64("bootstrap2.sh")
+  user_data = filebase64("scripts/bootstrap2.sh")
 }
 
 resource "aws_autoscaling_attachment" "target_grp_2" {
