@@ -16,15 +16,15 @@ resource "aws_security_group" "alb" {
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "alb-http" {
-  security_group_id = aws_security_group.alb.id
-  description       = "ALB HTTP Ingress rule"
+# resource "aws_vpc_security_group_ingress_rule" "alb-http" {
+#   security_group_id = aws_security_group.alb.id
+#   description       = "ALB HTTP Ingress rule"
 
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 80
-  ip_protocol = "tcp"
-  to_port     = 80
-}
+#   cidr_ipv4   = "0.0.0.0/0"
+#   from_port   = 80
+#   ip_protocol = "tcp"
+#   to_port     = 80
+# }
 
 resource "aws_vpc_security_group_ingress_rule" "alb-https" {
   security_group_id = aws_security_group.alb.id
