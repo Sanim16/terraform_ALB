@@ -46,15 +46,15 @@ resource "aws_vpc_security_group_ingress_rule" "alb-https" {
 #   to_port     = 22
 # }
 
-resource "aws_vpc_security_group_ingress_rule" "instances-http" {
-  security_group_id = aws_security_group.instances.id
-  description       = "Instances HTTP Ingress rule"
+# resource "aws_vpc_security_group_ingress_rule" "instances-http" {
+#   security_group_id = aws_security_group.instances.id
+#   description       = "Instances HTTP Ingress rule"
 
-  referenced_security_group_id = aws_security_group.alb.id
-  from_port                    = 80
-  ip_protocol                  = "tcp"
-  to_port                      = 80
-}
+#   referenced_security_group_id = aws_security_group.alb.id
+#   from_port                    = 80
+#   ip_protocol                  = "tcp"
+#   to_port                      = 80
+# }
 
 resource "aws_vpc_security_group_ingress_rule" "instances-https" {
   security_group_id = aws_security_group.instances.id
