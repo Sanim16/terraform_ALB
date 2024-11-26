@@ -52,7 +52,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_c
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "erraform_bucket_public_access" {
+resource "aws_s3_bucket_public_access_block" "terraform_bucket_public_access" {
   bucket = aws_s3_bucket.s3_lb_logs_bucket.id
 
   block_public_acls       = true
